@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PrimeVideoClone</string>
+    <string name="banner_heading">Movie Streaming App</string>
+    <string name="tabHome">Home</string>
+    <string name="tabTvShows">TV Shows</string>
+    <string name="tabMovies">Movies</string>
+    <string name="tabKids">Kids</string>
+</resources>
