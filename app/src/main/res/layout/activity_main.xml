@@ -67,9 +67,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout">
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            app:tabBackground="@drawable/indicator_selector"
+            app:tabIndicatorHeight="0dp"/>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vPagerBanner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+        </androidx.viewpager2.widget.ViewPager2>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
