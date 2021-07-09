@@ -19,12 +19,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/tab_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabTextColor="#989696"
         app:tabSelectedTextColor="#FFFFFF"
-        app:tabIndicator="#FFFFFF"
+        app:tabIndicatorColor="#FFFFFF"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
@@ -54,10 +54,10 @@
             android:text="@string/tabMovies" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tbKids"
+            android:id="@+id/tbCartoons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tabKids" />
+            android:text="@string/tabCartoons" />
     </com.google.android.material.tabs.TabLayout>
 
     <RelativeLayout
@@ -65,7 +65,15 @@
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+        app:layout_constraintTop_toBottomOf="@+id/tab_category">
+
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vPagerBanner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+        </androidx.viewpager2.widget.ViewPager2>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_indicator"
@@ -73,14 +81,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
+            android:background="#00FFFFFF"
             app:tabBackground="@drawable/indicator_selector"
-            app:tabIndicatorHeight="0dp"/>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vPagerBanner"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        </androidx.viewpager2.widget.ViewPager2>
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="20dp" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
