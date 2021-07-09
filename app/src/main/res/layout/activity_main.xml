@@ -61,6 +61,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,12 +69,10 @@
         app:layout_constraintTop_toBottomOf="@+id/tab_category">
 
 
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vPagerBanner"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
-        </androidx.viewpager2.widget.ViewPager2>
+            android:layout_height="200dp"></androidx.viewpager2.widget.ViewPager2>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_indicator"
@@ -85,5 +84,16 @@
             app:tabBackground="@drawable/indicator_selector"
             app:tabIndicatorHeight="0dp"
             app:tabMaxWidth="20dp" />
+
     </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

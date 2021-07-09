@@ -34,7 +34,6 @@ public class BannerPagerAdapter extends RecyclerView.Adapter<BannerPagerAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.banner_adapter_layout,parent, false);
-
         return new ViewHolder(v);
     }
 
@@ -48,7 +47,7 @@ public class BannerPagerAdapter extends RecyclerView.Adapter<BannerPagerAdapter.
         return moviesList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static final class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imgView;
         public ViewHolder(@NonNull @NotNull View itemView) {
