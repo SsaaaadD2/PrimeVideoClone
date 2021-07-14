@@ -7,13 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.saadm.primevideoclone.R;
 import com.saadm.primevideoclone.model.AllCategories;
+import com.saadm.primevideoclone.model.CategoryItem;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MainViewHolder>{
@@ -37,6 +40,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MainVi
     @Override
     public void onBindViewHolder(@NonNull @NotNull CategoryAdapter.MainViewHolder holder, int position) {
         holder.categoryName.setText(categories.get(position).getCategoryName());
+        holder.setItemRecyclerView(holder.itemRecyclerView,categories.get(position).getCategoryItemList());
     }
 
     @Override
@@ -44,13 +48,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MainVi
         return categories.size();
     }
 
-    public static final class MainViewHolder extends RecyclerView.ViewHolder{
+    public final class MainViewHolder extends RecyclerView.ViewHolder{
 
         TextView categoryName;
+        RecyclerView itemRecyclerView;
 
         public MainViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             categoryName = itemView.findViewById(R.id.txt_item_category);
+            itemRecyclerView = itemView.findViewById(R.id.recyCategoryItemRecycler);
+        }
+
+        public void setItemRecyclerView(RecyclerView recyclerView, List<CategoryItem> categoryItemList){
+            CategoryItemAdapter itemAdapter = new CategoryItemAdapter(context, categoryItemList);
+            recyclerView.setLayoutManager(new LinearLayoutManager
+                    (recyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+            recyclerView.setAdapter(itemAdapter);
         }
     }
 }

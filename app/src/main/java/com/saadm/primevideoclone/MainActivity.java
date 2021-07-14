@@ -1,6 +1,8 @@
 package com.saadm.primevideoclone;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.os.Looper;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.saadm.primevideoclone.adapter.BannerPagerAdapter;
+import com.saadm.primevideoclone.adapter.CategoryAdapter;
+import com.saadm.primevideoclone.model.AllCategories;
 import com.saadm.primevideoclone.model.BannerMovies;
 import com.saadm.primevideoclone.common.Constants;
 
@@ -24,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     List<BannerMovies> mTvShowsList;
     List<BannerMovies> mMoviesList;
     List<BannerMovies> mCartoonsList;
+    List<AllCategories> mCategoriesList;
     ViewPager2 mBannerMoviesViewPager;
+    RecyclerView mMainRecyclerView;
 
     Handler mHandler;
     Runnable mRunnable;
@@ -35,18 +41,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         //Set up hardcoded lists
-        mHomeBannerList = Constants.home;
-        mTvShowsList = Constants.tvShows;
-        mMoviesList = Constants.movies;
-        mCartoonsList = Constants.cartoons;
+        mHomeBannerList = Constants.HOME;
+        mTvShowsList = Constants.TV_SHOWS;
+        mMoviesList = Constants.MOVIES;
+        mCartoonsList = Constants.CARTOONS;
+        mCategoriesList = Constants.CATEGORIES;
 
 
         mIndicatorTab = findViewById(R.id.tab_indicator);
         mCategoryTab = findViewById(R.id.tab_category);
 
         setupHandler();
-        getSupportActionBar().hide();
+        setupCategoryRecycler(mCategoriesList);
 
         mCategoryTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -116,5 +125,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Delayed so that the first item can show
         mHandler.postDelayed(mRunnable, Constants.BANNER_SWIPE_DELAY);
+    }
+
+    private void setupCategoryRecycler(List<AllCategories> categoriesList){
+        mMainRecyclerView = findViewById(R.id.recycler_category);
+        CategoryAdapter adapter = new CategoryAdapter(categoriesList, this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mMainRecyclerView.setLayoutManager(layoutManager);
+        mMainRecyclerView.setAdapter(adapter);
+
     }
 }
