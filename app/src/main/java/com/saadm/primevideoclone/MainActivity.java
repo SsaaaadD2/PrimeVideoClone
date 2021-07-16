@@ -1,6 +1,7 @@
 package com.saadm.primevideoclone;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -8,7 +9,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.saadm.primevideoclone.adapter.BannerPagerAdapter;
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     List<AllCategories> mCategoriesList;
     ViewPager2 mBannerMoviesViewPager;
     RecyclerView mMainRecyclerView;
+    NestedScrollView mScrollView;
+    AppBarLayout mAppBarLayout;
 
     Handler mHandler;
     Runnable mRunnable;
@@ -40,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         getSupportActionBar().hide();
 
         //Set up hardcoded lists
@@ -53,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         mIndicatorTab = findViewById(R.id.tab_indicator);
         mCategoryTab = findViewById(R.id.tab_category);
+        mAppBarLayout = findViewById(R.id.appbarAppToolbar);
+        mScrollView = findViewById(R.id.nestedScrollView);
 
         setupHandler();
         setupCategoryRecycler(mCategoriesList);
@@ -63,18 +69,22 @@ public class MainActivity extends AppCompatActivity {
                 switch(tab.getPosition()){
                     case 1:
                         setBannerPagerAdapter(mTvShowsList);
+                        setDefaultScrolled();
                         resetHandler();
                         return;
                     case 2:
                         setBannerPagerAdapter(mMoviesList);
+                        setDefaultScrolled();
                         resetHandler();
                         return;
                     case 3:
                         setBannerPagerAdapter(mCartoonsList);
+                        setDefaultScrolled();
                         resetHandler();
                         return;
                     default:
                         setBannerPagerAdapter(mHomeBannerList);
+                        setDefaultScrolled();
                         resetHandler();
                 }
             }
@@ -134,5 +144,11 @@ public class MainActivity extends AppCompatActivity {
         mMainRecyclerView.setLayoutManager(layoutManager);
         mMainRecyclerView.setAdapter(adapter);
 
+    }
+
+    private void setDefaultScrolled(){
+        mScrollView.fullScroll(View.FOCUS_UP);
+        mScrollView.scrollTo(0,0);
+        mAppBarLayout.setExpanded(true);
     }
 }
